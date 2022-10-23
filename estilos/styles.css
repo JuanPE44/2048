@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+html body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-app .header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contenedor-app .header .btn-newGame {
+  margin: 1rem;
+}
+.contenedor-app .tablero {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  background: #bbada0;
+}
+.contenedor-app .tablero .caja {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cdc1b4;
+  color: #776e65;
+  font-size: 1.5rem;
+}
+.contenedor-app .tablero .num2 {
+  background: #eee1c9;
+}
+.contenedor-app .tablero .num4 {
+  background: #eee1c9;
+}
+.contenedor-app .tablero .num8 {
+  color: #f9f6f2;
+  background: #f3b27a;
+}
+
+/*# sourceMappingURL=styles.css.map */
