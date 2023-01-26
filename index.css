@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app {
+  display:flex;
+  flex-direction: column;
+}
+
+.tablero {
+  display: grid;
+  background: #bbada0;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.caja {
+  background: #cdc1b4;
+  color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 3px;
+  
+  animation: 0.8s fadeIn forwards;
+}
+
