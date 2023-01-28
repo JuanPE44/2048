@@ -3,8 +3,9 @@ class Tablero{
   constructor(largo) {
     this.largo=largo;
     this.elemento = document.querySelector('.tablero');
-    this.cajas = []
-    this.array = []
+    this.cajas = [];
+    this.array = [];
+    this.puntaje = 0;
   }
 
   crearTablero() {
@@ -43,36 +44,36 @@ class Tablero{
   }
 
   pintarCaja(caja, numero) {
+    caja.style.background = this.obtenerFondo(numero);
+    caja.style.color = this.obtenerColor(numero);    
+  }
+
+  obtenerFondo(numero){
     switch(numero){
-      case 2:  
-        caja.style.background = '#eee4da';
-        caja.style.color = '#776e65'
-      break;
-      case 4: 
-        caja.style.background = '#eee1c9'
-        caja.style.color = '#776e65'
-      break;
-      case 8: 
-        caja.style.background = '#f69664'
-        caja.style.color = '#f9f6f2'
-      break;
-      case 16: 
-        caja.style.background = '#f69664'
-        caja.style.color = '#f9f6f2'
-      break;
-      case 32: 
-        caja.style.background = '#f77c5f'
-        caja.style.color = '#f9f6f2'
-      break;
-      case 64: 
-        caja.style.background = '#f75f3b'
-        caja.style.color = '#f9f6f2'
-      break;
-      default: 
-        caja.style.background = '#cdc1b4'
-        caja.style.color = 'transparent'
-      break;
+        case 2:return"#eee4da";break;
+        case 4:return"#ede0c8";break;
+        case 8:return"#f2b179";break;
+        case 16:return"#f59563";break;
+        case 32:return"#f67e5f";break;
+        case 64:return"#f65e3b";break;
+        case 128:return"#edcf72";break;
+        case 256:return"#edcc61";break;
+        case 512:return"#4cc74a";break;
+        case 1024:return"#33b5e5";break;
+        case 2048:return"#09c";break;
+        case 4096:return"#a6c";break;
+        case 8192:return"#93c";break;
     }
+    return '#cdc1b4';
+  }
+
+  obtenerColor(numero) {
+    switch(numero){
+      case 0:return"transparent";break;
+      case 2:return"#776e65";break;
+      case 4:return"#776e65";break;
+  }
+  return '#f9f6f2';
   }
 
   rellenarAleatorio() {
@@ -105,6 +106,7 @@ class Tablero{
       case 40:
         this.moverArribaAbajo(false); // abajo
     }
+    console.log(this.puntaje)
     this.rellenarAleatorio();
     this.pintarTablero();
   }
@@ -167,6 +169,7 @@ class Tablero{
       if(i>=0) {
         if(array[i] === array[i-1]) {
           array[i] = array[i]+array[i-1];
+          this.puntaje+=array[i];
           array[i-1] = 0;
         }
       }
@@ -179,6 +182,7 @@ class Tablero{
       if(i<array.length) {
         if(array[i] === array[i+1]) {
           array[i] = array[i]+array[i+1];
+          this.puntaje+=array[i];
           array[i+1] = 0;
         }
       }

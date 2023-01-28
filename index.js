@@ -2,7 +2,7 @@
 
 
 
-const t = new Tablero(5)
+const t = new Tablero(4)
 
 t.crearTablero()
 
