@@ -1,9 +1,9 @@
 class Tablero {
   constructor(largo) {
     this.largo = largo;
-    this.elementoPuntaje = document.querySelector('.puntaje span')
-    this.elemento = document.querySelector('.tablero');
-    this.contenedorCajas = document.querySelector('.contenedor-cajas');
+    this.elementoPuntaje = document.querySelector(".puntaje span");
+    this.elemento = document.querySelector(".tablero");
+    this.contenedorCajas = document.querySelector(".contenedor-cajas");
     this.array = [];
     this.puntaje = 0;
   }
@@ -144,8 +144,7 @@ class Tablero {
       if (i >= 0) {
         if (array[i].num === array[i - 1].num) {
           array[i].num += array[i - 1].num;
-          this.puntaje += array[i].num;
-          this.elementoPuntaje.innerHTML = this.puntaje;
+          this.manejarPuntaje(array[i].num);
           this.contenedorCajas.removeChild(array[i - 1].caja.elemento);
           array[i - 1].num = 0;
           array[i - 1].caja = null;
@@ -161,7 +160,7 @@ class Tablero {
       if (i < array.length - 1) {
         if (array[i].num === array[i + 1].num) {
           array[i].num += array[i + 1].num;
-          this.puntaje += array[i].num;
+          this.manejarPuntaje(array[i].num);
           this.contenedorCajas.removeChild(array[i + 1].caja.elemento);
           array[i + 1].num = 0;
           array[i + 1].caja = null;
@@ -171,11 +170,36 @@ class Tablero {
     return array;
   }
 
+  manejarPuntaje(num) {
+    this.puntaje += num;
+    this.elementoPuntaje.innerHTML = this.puntaje;
+    this.pintarMejorPuntaje();
+  }
+
+  actualizarMejorPuntaje() {
+    const puntos = JSON.parse(localStorage.getItem("puntos2048"));
+    console.log(puntos);
+    puntos.push(this.puntaje);
+    localStorage.setItem("puntos2048", JSON.stringify(puntos));
+  }
+
+  pintarMejorPuntaje() {
+    let puntos = JSON.parse(localStorage.getItem("puntos2048"));
+    let max = 0;
+    puntos.forEach((p) => {
+      if (p > max) {
+        max = p;
+      }
+    });
+    document.querySelector(".mejor-puntaje span").innerHTML = `${max}`;
+  }
+
   reiniciar() {
-    this.contenedorCajas.innerHTML = '';
+    this.actualizarMejorPuntaje();
+    this.contenedorCajas.innerHTML = "";
     this.elementoPuntaje.innerHTML = 0;
     this.puntaje = 0;
-    
+
     for (let x = 0; x < this.largo; x++) {
       for (let y = 0; y < this.largo; y++) {
         this.array[x][y] = { num: 0, caja: null };
