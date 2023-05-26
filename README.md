@@ -15,4 +15,5 @@ Este es un proyecto del juego 2048 utilizando HTML, CSS y JavaScript. El juego s
 
 ## Instalación
 
-1. Clona este repositorio en tu máquina local:
+1. Clona este repositorio en tu máquina local
+2. Abri el archivo `index.html`
