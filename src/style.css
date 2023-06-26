@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: clear sans,helvetica neue,Arial,sans-serif;
+  font-family: clear sans, helvetica neue, Arial, sans-serif;
 }
 
 body {
@@ -12,8 +12,8 @@ body {
   min-height: 100vh;
 }
 
-.app {
-  display:flex;
+#app {
+  display: flex;
   flex-direction: column;
 }
 
@@ -36,7 +36,8 @@ body {
   gap: 10px;
 }
 
-.puntaje, .mejor-puntaje {
+.puntaje,
+.mejor-puntaje {
   padding: 5px 10px;
   background: #bbada0;
   color: #fff;
@@ -47,8 +48,9 @@ body {
   gap: 5px;
 }
 
-.puntaje h3, .mejor-puntaje h3  {
-  font-size: .8rem;
+.puntaje h3,
+.mejor-puntaje h3 {
+  font-size: 0.8rem;
   color: #eee4da;
 }
 
@@ -60,7 +62,7 @@ body {
 
 .reiniciar button {
   background: #8f7a66;
-  color:#fff;
+  color: #fff;
   padding: 5px 15px;
   margin: 10px 0;
   border-radius: 3px;
@@ -69,10 +71,7 @@ body {
   cursor: pointer;
 }
 
-
-
-
-.tablero {
+.board {
   position: relative;
   display: grid;
   background: #bbada0;
@@ -81,7 +80,7 @@ body {
   border-radius: 3px;
 }
 
-.grid-cell {
+.board-cell {
   background: #cdc1b4;
   color: transparent;
   display: flex;
@@ -92,7 +91,7 @@ body {
   border-radius: 3px;
 }
 
-.contenedor-cajas {
+.container-squares {
   display: flex;
   position: absolute;
   width: 100%;
@@ -100,8 +99,7 @@ body {
   padding: 10px;
 }
 
-
-.caja {
+.square {
   position: absolute;
   width: 80px;
   height: 80px;
@@ -109,7 +107,7 @@ body {
   transition-property: transform;
 }
 
-.caja-num {
+.square-number {
   width: 100%;
   height: 100%;
   color: transparent;
@@ -119,128 +117,62 @@ body {
   font-size: 2rem;
   font-weight: bold;
   border-radius: 3px;
-  animation: appear 200ms ease ;
+  animation: appear 200ms ease;
 }
 
-
-.caja-2 {
+.square-2 {
   background: #eee4da;
   color: #776e65;
 }
 
-.caja-4 {
+.square-4 {
   background: #ede0c8;
   color: #776e65;
 }
 
-.caja-8 {
+.square-8 {
   background: #f2b179;
   color: #f9f6f2;
 }
 
-.caja-16 {
+.square-16 {
   background: #f59563;
   color: #f9f6f2;
 }
 
-.caja-32 {
+.square-32 {
   background: #f67e5f;
   color: #f9f6f2;
 }
 
-.caja-64 {
+.square-64 {
   background: #f65e3b;
   color: #f9f6f2;
 }
 
-.caja-128 {
+.square-128 {
   background: #edcf72;
   color: #f9f6f2;
 }
 
-.caja-256 {
+.square-256 {
   background: #edcc61;
   color: #f9f6f2;
 }
 
-.caja-512 {
+.square-512 {
   background: #4cc74a;
   color: #f9f6f2;
 }
 
-.caja-1024 {
+.square-1024 {
   background: #33b5e5;
   color: #f9f6f2;
 }
 
-.caja-2048 {
+.square-2048 {
   background: #09c;
   color: #f9f6f2;
-}
-
-.pos-0-0 {
-  transform: translate(0px , 0px);
-}
-
-.pos-1-0 {
-  transform: translate(90px , 0px);
-}
-
-.pos-2-0 {
-  transform: translate(180px , 0px);
-}
-
-.pos-3-0 {
-  transform: translate(270px , 0px);
-}
-
-.pos-0-1 {
-  transform: translate(0px , 90px);
-}
-
-.pos-1-1 {
-  transform: translate(90px , 90px);
-}
-
-.pos-2-1 {
-  transform: translate(180px , 90px);
-}
-
-.pos-3-1 {
-  transform: translate(270px , 90px);
-}
-
-.pos-0-2 {
-  transform: translate(0px , 180px);
-}
-
-.pos-1-2 {
-  transform: translate(90px , 180px);
-}
-
-.pos-2-2 {
-  transform: translate(180px , 180px);
-}
-
-.pos-3-2 {
-  transform: translate(270px , 180px);
-}
-
-
-.pos-0-3 {
-  transform: translate(0px , 270px);
-}
-
-.pos-1-3 {
-  transform: translate(90px , 270px);
-}
-
-.pos-2-3 {
-  transform: translate(180px , 270px);
-}
-
-.pos-3-3 {
-  transform: translate(270px , 270px);
 }
 
 @keyframes appear {
