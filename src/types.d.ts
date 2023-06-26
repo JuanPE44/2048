@@ -1,5 +1,5 @@
-import { Square } from "./Square"
+import { Square } from "./Square";
 
-
-export type rowBoard = {num:number, square: null | Square}[]
-export type BoardArray = rowBoard[]
+export type cellBoard = { num: number; square: null | Square };
+export type rowBoard = cellBoard[];
+export type BoardArray = rowBoard[];

@@ -1,5 +1,5 @@
 import { Square } from "./Square";
-import { BoardArray, rowBoard } from "./types";
+import { BoardArray, rowBoard, cellBoard } from "./types";
 
 export class Board {
   element;
@@ -55,7 +55,7 @@ export class Board {
     let max = SIZE * SIZE;
     for (let i = 0; i < max; i++) {
       const { x, y } = this.getRandomNumbers(SIZE);
-      const squareNumber = this.array[x][y].num;
+      const squareNumber = this.array[y][x].num;
       if (squareNumber === 0) {
         const c = new Square(
           x,
@@ -64,8 +64,8 @@ export class Board {
           this.SIZE,
           this.containerSquares
         );
-        this.array[x][y].num = 2;
-        this.array[x][y].square = c;
+        this.array[y][x].num = 2;
+        this.array[y][x].square = c;
         break;
       }
     }
@@ -87,13 +87,13 @@ export class Board {
     const keyName = e.code;
     switch (keyName) {
       case "ArrowRight":
-        this.handleMoveX(false);
+        this.handleMoveX(true);
         break;
       case "ArrowUp":
         this.handleMoveY(false);
         break;
       case "ArrowLeft":
-        this.handleMoveX(true);
+        this.handleMoveX(false);
         break;
       case "ArrowDown":
         this.handleMoveY(true);
@@ -101,101 +101,110 @@ export class Board {
     this.addRandomSquare(this.SIZE);
   }
 
-  handleMoveY(direction: boolean) {
-    // true derecha, false izquierda
-    let newArray = [];
-    for (let i = 0; i < this.SIZE; i++) {
-      newArray.push(this.array[i].filter((n) => n.num > 0));
-      newArray[i] = direction
-        ? this.sumRight(newArray[i])
-        : this.sumLeft(newArray[i]);
-      newArray[i] = newArray[i].filter((n) => n.num > 0);
-      for (let j = 0; j < this.SIZE; j++) {
-        // rellena con ceros a la izquierda
-        if (newArray[i].length < this.SIZE) {
-          direction
-            ? newArray[i].unshift({ num: 0, square: null })
-            : newArray[i].push({ num: 0, square: null });
-        }
-      }
-      newArray[i].forEach((c, i) => {
-        if (c.num > 0) {
-          c.square!.y = i;
-          c.square!.moveTo(c.square!.x, i, this.SIZE_SQUARE, c.num);
-        }
-      });
-    }
+  handleMoveX(direction: boolean) {
+    const newArray = this.array.map((row) => {
+      const filteredRow = row.filter((n) => n.num > 0);
+      const summedRow = direction
+        ? this.sumRight(filteredRow)
+        : this.sumLeft(filteredRow);
+      const finalRow = summedRow.filter((n) => n.num > 0);
+      const fillRow = this.fillRow(finalRow, direction);
+      this.moveX(fillRow);
+      return fillRow;
+    });
     this.array = newArray;
   }
 
-  handleMoveX(direction: boolean) {
+  fillRow(row: rowBoard, direction: boolean) {
+    const newRow = row;
+    for (let j = 0; j < this.SIZE; j++) {
+      if (newRow.length < this.SIZE) {
+        direction
+          ? newRow.unshift({ num: 0, square: null })
+          : newRow.push({ num: 0, square: null });
+      }
+    }
+    return newRow;
+  }
+
+  moveX(row: rowBoard) {
+    row.forEach((s, i) => {
+      if (s.num <= 0) return;
+      s.square!.moveTo(i, s.square!.y, this.SIZE_SQUARE, s.num);
+    });
+  }
+
+  moveY(row: rowBoard) {
+    row.forEach((s, i) => {
+      if (s.num <= 0) return;
+      s.square!.moveTo(s.square!.x, i, this.SIZE_SQUARE, s.num);
+    });
+  }
+
+  handleMoveY(direction: boolean) {
     // true arriba, false abajo
+    const arrayChanged = this.changeArrayDirecton(this.array);
+    const newArray = arrayChanged.map((row) => {
+      const filteredRow = row.filter((n) => n.num > 0);
+      const summedRow = direction
+        ? this.sumRight(filteredRow)
+        : this.sumLeft(filteredRow);
+      const finalRow = summedRow.filter((n) => n.num > 0);
+      const fillRow = this.fillRow(finalRow, direction);
+      this.moveY(fillRow);
+      return fillRow;
+    });
+    this.array = this.changeArrayDirecton(newArray);
+  }
 
-    let newArray = [];
-    let array = [];
+  changeArrayDirecton(array: BoardArray) {
+    let newArray: BoardArray = [];
     for (let i = 0; i < this.SIZE; i++) {
+      newArray[i] = [];
       for (let j = 0; j < this.SIZE; j++) {
-        array.push(this.array[j][i]);
-      }
-      newArray.push(array);
-      array = [];
-    }
-
-    for (let i = 0; i < this.SIZE; i++) {
-      newArray[i] = direction
-        ? this.sumLeft(newArray[i].filter((n) => n.num > 0))
-        : this.sumRight(newArray[i].filter((n) => n.num > 0));
-      newArray[i] = newArray[i].filter((n) => n.num > 0);
-
-      for (let j = 0; j < this.SIZE; j++) {
-        // rellena con ceros a la izquierda
-        if (newArray[i].length < this.SIZE) {
-          direction
-            ? newArray[i].push({ num: 0, square: null })
-            : newArray[i].unshift({ num: 0, square: null });
-        }
-      }
-      newArray[i].forEach((c, i) => {
-        if (c.num > 0) {
-          c.square!.x = i;
-          c.square!.moveTo(i, c.square!.y, this.SIZE_SQUARE, c.num);
-        }
-      });
-    }
-
-    for (let i = 0; i < this.SIZE; i++) {
-      for (let j = 0; j < this.SIZE; j++) {
-        this.array[i][j] = newArray[j][i];
+        newArray[i][j] = array[j][i];
       }
     }
+    return newArray;
   }
 
   sumRight(array: rowBoard) {
     for (let i = array.length - 1; i > 0; i--) {
-      if (i >= 0) {
-        if (array[i].num === array[i - 1].num) {
-          array[i].num += array[i - 1].num;
-          this.containerSquares.removeChild(array[i - 1].square!.element);
-          array[i - 1].num = 0;
-          array[i - 1].square = null;
-        }
+      if (i < 0) break;
+      const cell = array[i];
+      const cellAnt = array[i - 1];
+      if (cell.num === cellAnt.num) {
+        this.removeSquareElement(cellAnt, cell);
+        cell.num += cellAnt.num;
+        cellAnt.num = 0;
+        cellAnt.square = null;
       }
     }
-
     return array;
   }
 
   sumLeft(array: rowBoard) {
     for (let i = 0; i < array.length; i++) {
-      if (i < array.length - 1) {
-        if (array[i].num === array[i + 1].num) {
-          array[i].num += array[i + 1].num;
-          this.containerSquares.removeChild(array[i + 1].square!.element);
-          array[i + 1].num = 0;
-          array[i + 1].square = null;
-        }
+      if (i >= array.length - 1) break;
+      const cell = array[i];
+      const cellNext = array[i + 1];
+      if (cell.num === cellNext.num) {
+        this.removeSquareElement(cellNext, cell);
+        cell.num += cellNext.num;
+        cellNext.num = 0;
+        cellNext.square = null;
       }
     }
     return array;
+  }
+
+  removeSquareElement(cellNext: cellBoard, cell: cellBoard) {
+    cellNext.square!.moveTo(
+      cell.square!.x,
+      cell.square!.y,
+      this.SIZE_SQUARE,
+      cellNext.num
+    );
+    this.containerSquares.removeChild(cellNext.square!.element);
   }
 }
