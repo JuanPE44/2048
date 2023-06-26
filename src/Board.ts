@@ -87,21 +87,21 @@ export class Board {
     const keyName = e.code;
     switch (keyName) {
       case "ArrowRight":
-        this.handleMoveX(true);
-        break;
-      case "ArrowUp":
-        this.handleMoveY(true);
-        break;
-      case "ArrowLeft":
         this.handleMoveX(false);
         break;
-      case "ArrowDown":
+      case "ArrowUp":
         this.handleMoveY(false);
+        break;
+      case "ArrowLeft":
+        this.handleMoveX(true);
+        break;
+      case "ArrowDown":
+        this.handleMoveY(true);
     }
     this.addRandomSquare(this.SIZE);
   }
 
-  handleMoveX(direction: boolean) {
+  handleMoveY(direction: boolean) {
     // true derecha, false izquierda
     let newArray = [];
     for (let i = 0; i < this.SIZE; i++) {
@@ -120,15 +120,15 @@ export class Board {
       }
       newArray[i].forEach((c, i) => {
         if (c.num > 0) {
-          c.square!.x = i;
-          c.square!.moveTo(i, c.square!.y, this.SIZE_SQUARE, c.num);
+          c.square!.y = i;
+          c.square!.moveTo(c.square!.x, i, this.SIZE_SQUARE, c.num);
         }
       });
     }
     this.array = newArray;
   }
 
-  handleMoveY(direction: boolean) {
+  handleMoveX(direction: boolean) {
     // true arriba, false abajo
 
     let newArray = [];
@@ -157,8 +157,8 @@ export class Board {
       }
       newArray[i].forEach((c, i) => {
         if (c.num > 0) {
-          c.square!.y = i;
-          c.square!.moveTo(c.square!.x, i, this.SIZE_SQUARE, c.num);
+          c.square!.x = i;
+          c.square!.moveTo(i, c.square!.y, this.SIZE_SQUARE, c.num);
         }
       });
     }

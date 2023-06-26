@@ -39,10 +39,10 @@ export class Square {
     this.element.style.transform = `translate(${x * SIZE + borderX}px, ${
       y * SIZE + borderY
     }px)`;
-    this.x = x;
-    this.y = y;
     this.squareNumber.classList.add(`square-${number}`);
     this.squareNumber.innerHTML = number.toString();
+    this.x = x;
+    this.y = y;
   }
 
   getBorder(x: number, y: number) {
