@@ -36,13 +36,25 @@ export class Square {
     this.container?.appendChild(this.element);
   }
 
+  updateSquareElement(number: number) {
+    if (this.number !== number) {
+      this.squareNumber.classList.remove(
+        `square-${this.number}`,
+        "square-animated"
+      );
+      this.squareNumber.offsetWidth;
+      this.squareNumber.classList.add(`square-${number}`, "square-animated");
+      this.squareNumber.innerHTML = number.toString();
+    }
+  }
+
   moveTo(x: number, y: number, SIZE: number, number: number) {
     const { borderX, borderY } = this.getBorder(x, y);
     this.element.style.transform = `translate(${x * SIZE + borderX}px, ${
       y * SIZE + borderY
     }px)`;
-    this.squareNumber.classList.add(`square-${number}`);
-    this.squareNumber.innerHTML = number.toString();
+    this.updateSquareElement(number);
+    this.number = number;
     this.x = x;
     this.y = y;
   }
