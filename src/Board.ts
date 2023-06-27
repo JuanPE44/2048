@@ -1,13 +1,16 @@
+import { Game } from "./Game";
 import { Square } from "./Square";
 import { BoardArray, rowBoard, cellBoard } from "./types";
 
 export class Board {
+  game;
   element;
   SIZE;
   SIZE_SQUARE;
   containerSquares;
   array: BoardArray;
-  constructor(SIZE: number) {
+  constructor(game: Game, SIZE: number) {
+    this.game = game;
     this.SIZE = SIZE;
     this.SIZE_SQUARE = 80;
     this.element = document.createElement("div");
@@ -176,6 +179,7 @@ export class Board {
       if (cell.num === cellAnt.num) {
         this.removeSquareElement(cellAnt, cell);
         cell.num += cellAnt.num;
+        this.game.handleScore(cell.num);
         cellAnt.num = 0;
         cellAnt.square = null;
       }
@@ -191,6 +195,7 @@ export class Board {
       if (cell.num === cellNext.num) {
         this.removeSquareElement(cellNext, cell);
         cell.num += cellNext.num;
+        this.game.handleScore(cell.num);
         cellNext.num = 0;
         cellNext.square = null;
       }

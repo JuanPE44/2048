@@ -7,7 +7,26 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="container-game">
+        <div class="header">
+          <h1 class="title">2048</h1>
+          <div class="container-score">
+            <div class="score">
+              <h3>SCORE</h3>
+              <span>0</span>
+            </div>
+            <div class="best-score">
+              <h3>BEST</h3>
+              <span>0</span>
+            </div>
+          </div>
+        </div>
+        <div class="newgame">
+          <button>New Game</button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

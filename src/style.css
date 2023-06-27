@@ -21,14 +21,14 @@ body {
   display: flex;
 }
 
-.titulo {
+.title {
   font-size: 3.4rem;
   font-weight: bold;
   color: #776e65;
   flex-grow: 1;
 }
 
-.contenedor-puntaje {
+.container-score {
   flex-grow: 1;
   display: flex;
   align-items: flex-start;
@@ -36,8 +36,8 @@ body {
   gap: 10px;
 }
 
-.puntaje,
-.mejor-puntaje {
+.score,
+.best-score {
   padding: 5px 10px;
   background: #bbada0;
   color: #fff;
@@ -48,22 +48,22 @@ body {
   gap: 5px;
 }
 
-.puntaje h3,
-.mejor-puntaje h3 {
+.score h3,
+.best-score h3 {
   font-size: 0.8rem;
   color: #eee4da;
 }
 
-.reiniciar {
+.newgame {
   padding: 10px 0;
   display: flex;
   justify-content: flex-end;
 }
 
-.reiniciar button {
+.newgame button {
   background: #8f7a66;
   color: #fff;
-  padding: 5px 15px;
+  padding: 10px 15px;
   margin: 10px 0;
   border-radius: 3px;
   border: none;

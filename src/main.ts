@@ -1,6 +1,13 @@
 import "./style.css";
-import { Board } from "./Board";
+import { Game } from "./Game";
 
-const app = document.querySelector<HTMLDivElement>("#app");
-const b = new Board(4);
-app?.appendChild(b.element);
+if (localStorage.getItem("bestScore") === null) {
+  let puntos: [] | number[] = [];
+  localStorage.setItem("bestScore", JSON.stringify(puntos));
+}
+
+const g = new Game();
+
+const containerGame = document.querySelector<HTMLDivElement>(".container-game");
+
+containerGame?.appendChild(g.board.element);
