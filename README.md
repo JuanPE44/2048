@@ -16,4 +16,5 @@ Este es un proyecto del juego 2048 utilizando HTML, CSS y Typescript. El juego t
 ## Instalación
 
 1. Clona este repositorio en tu máquina local
-2. Abri el archivo `index.html`
+2. Ejecuta el comando `npm install`
+3. Abri el servidor local con `npm run dev`
