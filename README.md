@@ -1,6 +1,6 @@
 # Juego 2048
 
-Este es un proyecto del juego 2048 utilizando HTML, CSS y Typescript. El juego se juega en un navegador web y tiene como objetivo combinar fichas numéricas para llegar a la ficha 2048.
+Este es un proyecto del juego 2048 utilizando HTML, CSS y Typescript. El juego tiene como objetivo combinar fichas numéricas para llegar a la ficha 2048.
 
 ## Demostración
 
