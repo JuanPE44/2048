@@ -22,7 +22,7 @@ body {
 }
 
 .title {
-  font-size: 3.4rem;
+  font-size: 4.2rem;
   font-weight: bold;
   color: #776e65;
   flex-grow: 1;
@@ -38,6 +38,9 @@ body {
 
 .score,
 .best-score {
+  min-width: 80px;
+  font-weight: bold;
+  font-size: 1.5rem;
   padding: 5px 10px;
   background: #bbada0;
   color: #fff;
@@ -61,14 +64,16 @@ body {
 }
 
 .newgame button {
+  font-weight: bold;
   background: #8f7a66;
   color: #fff;
   padding: 10px 15px;
   margin: 10px 0;
   border-radius: 3px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
+  outline: none;
 }
 
 .board {
@@ -101,8 +106,6 @@ body {
 
 .square {
   position: absolute;
-  width: 80px;
-  height: 80px;
   transition: 100ms ease-in-out;
   transition-property: transform;
 }

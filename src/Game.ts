@@ -5,14 +5,16 @@ export class Game {
   elementScore;
   elementBestScore;
   board;
+  win;
 
   constructor() {
     this.board = new Board(this, 4);
     this.elementScore = document.querySelector(".score span");
     this.elementBestScore = document.querySelector(".best-score span");
+    this.win = false;
     this.drawBestScore();
     document
-      .querySelector(".newgame")
+      .querySelector(".newgame button")
       ?.addEventListener("click", () => this.newGame());
   }
 
@@ -48,6 +50,7 @@ export class Game {
 
   newGame() {
     this.score = 0;
+    this.win = false;
     this.elementScore!.innerHTML = this.score.toString();
     const newArray = this.board.array.map((row) => {
       return row.map(() => {
@@ -58,5 +61,11 @@ export class Game {
     this.board.containerSquares.innerHTML = "";
     this.board.addRandomSquare(this.board.SIZE);
     this.board.addRandomSquare(this.board.SIZE);
+  }
+
+  checkWin(number: number) {
+    if (number === 64) {
+      this.win = true;
+    }
   }
 }

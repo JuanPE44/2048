@@ -12,7 +12,7 @@ export class Board {
   constructor(game: Game, SIZE: number) {
     this.game = game;
     this.SIZE = SIZE;
-    this.SIZE_SQUARE = 80;
+    this.SIZE_SQUARE = 90;
     this.element = document.createElement("div");
     this.array = this.createBoardArray(SIZE);
     this.containerSquares = this.createContainerSquares();
@@ -58,8 +58,8 @@ export class Board {
     let max = SIZE * SIZE;
     for (let i = 0; i < max; i++) {
       const { x, y } = this.getRandomNumbers(SIZE);
-      const squareNumber = this.array[y][x].num;
-      if (squareNumber === 0) {
+      const cell = this.array[y][x];
+      if (cell.num === 0) {
         const c = new Square(
           x,
           y,
@@ -67,16 +67,16 @@ export class Board {
           this.SIZE,
           this.containerSquares
         );
-        this.array[y][x].num = 2;
-        this.array[y][x].square = c;
+        cell.num = 2;
+        cell.square = c;
         break;
       }
     }
   }
 
   getRandomNumbers(SIZE: number): { x: number; y: number } {
-    let x = Math.floor(Math.random() * SIZE);
-    let y = Math.floor(Math.random() * SIZE);
+    const x = Math.floor(Math.random() * SIZE);
+    const y = Math.floor(Math.random() * SIZE);
     return { x, y };
   }
 
@@ -87,6 +87,7 @@ export class Board {
   }
 
   handleMove(e: KeyboardEvent) {
+    if (this.game.win) return;
     const keyName = e.code;
     switch (keyName) {
       case "ArrowRight":
@@ -101,10 +102,10 @@ export class Board {
       case "ArrowDown":
         this.handleMoveY(true);
     }
-    this.addRandomSquare(this.SIZE);
   }
 
   handleMoveX(direction: boolean) {
+    this.addRandomSquare(this.SIZE);
     const newArray = this.array.map((row) => {
       const filteredRow = row.filter((n) => n.num > 0);
       const summedRow = direction
@@ -145,7 +146,7 @@ export class Board {
   }
 
   handleMoveY(direction: boolean) {
-    // true arriba, false abajo
+    this.addRandomSquare(this.SIZE);
     const arrayChanged = this.changeArrayDirecton(this.array);
     const newArray = arrayChanged.map((row) => {
       const filteredRow = row.filter((n) => n.num > 0);
@@ -180,6 +181,7 @@ export class Board {
         this.removeSquareElement(cellAnt, cell);
         cell.num += cellAnt.num;
         this.game.handleScore(cell.num);
+        this.game.checkWin(cell.num);
         cellAnt.num = 0;
         cellAnt.square = null;
       }
@@ -196,6 +198,7 @@ export class Board {
         this.removeSquareElement(cellNext, cell);
         cell.num += cellNext.num;
         this.game.handleScore(cell.num);
+        this.game.checkWin(cell.num);
         cellNext.num = 0;
         cellNext.square = null;
       }

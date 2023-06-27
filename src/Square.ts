@@ -27,6 +27,8 @@ export class Square {
   }
 
   createSquare() {
+    this.element.style.width = `${this.SIZE}px`;
+    this.element.style.height = `${this.SIZE}px`;
     this.squareNumber.innerHTML = this.number.toString();
     this.squareNumber.classList.add("square-2", "square-number");
     this.element.classList.add("square");
