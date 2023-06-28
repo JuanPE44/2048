@@ -54,6 +54,7 @@ export class Square {
       void this.squareNumber.offsetWidth;
       this.squareNumber.classList.add(`square-${number}`, "square-animated");
       this.squareNumber.innerHTML = number.toString();
+      this.element.style.zIndex = `${number}`;
     }
   }
 
@@ -69,6 +70,7 @@ export class Square {
   }
 
   moveSquareAnt(x: number, y: number, SIZE: number, squareAnt: Square | null) {
+    console.log(squareAnt?.element.id);
     if (!squareAnt) return;
     if (!this.squareExistInContainer(squareAnt.element.id)) return;
     const { borderX, borderY } = this.getBorder(x, y);
@@ -79,14 +81,14 @@ export class Square {
     setTimeout(() => {
       squareAnt.element.style.display = "none";
       this.board.containerSquares.removeChild(squareAnt.element);
-    }, 150);
+    }, 50);
   }
 
   squareExistInContainer(id: string) {
     if (id === "") return false;
     const squares = document.querySelectorAll(".square");
     const ids = [...squares].map((s) => s.id);
-    console.log({ ids, output: ids.includes(id), id });
+    console.log({ id, ids });
     return ids.includes(id);
   }
 

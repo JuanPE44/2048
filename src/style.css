@@ -132,68 +132,57 @@ body {
 .square-2 {
   background: #eee4da;
   color: #776e65;
-  animation: appear 200ms ease;
-  z-index: 20;
+  animation: appear 300ms ease;
 }
 
 .square-4 {
   background: #ede0c8;
   color: #776e65;
-  z-index: 40;
 }
 
 .square-8 {
   background: #f2b179;
   color: #f9f6f2;
-  z-index: 60;
 }
 
 .square-16 {
   background: #f59563;
   color: #f9f6f2;
-  z-index: 80;
 }
 
 .square-32 {
   background: #f67e5f;
   color: #f9f6f2;
-  z-index: 100;
 }
 
 .square-64 {
   background: #f65e3b;
   color: #f9f6f2;
-  z-index: 120;
 }
 
 .square-128 {
   background: #edcf72;
   color: #f9f6f2;
-  z-index: 140;
 }
 
 .square-256 {
   background: #edcc61;
   color: #f9f6f2;
-  z-index: 160;
 }
 
 .square-512 {
   background: #4cc74a;
   color: #f9f6f2;
-  z-index: 180;
 }
 
 .square-1024 {
   background: #33b5e5;
   color: #f9f6f2;
-  z-index: 200;
 }
 
 .square-2048 {
   background: #09c;
   color: #f9f6f2;
-  z-index: 220;
 }
 
 @keyframes appear {

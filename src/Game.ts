@@ -64,7 +64,7 @@ export class Game {
   }
 
   checkWin(number: number) {
-    if (number === 64) {
+    if (number === 2048) {
       this.win = true;
     }
   }
