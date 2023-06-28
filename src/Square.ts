@@ -1,4 +1,8 @@
+import { Board } from "./Board";
+
 export class Square {
+  id;
+  board;
   x;
   y;
   SIZE;
@@ -8,12 +12,16 @@ export class Square {
   container;
   number;
   constructor(
+    id: number,
+    board: Board,
     x: number,
     y: number,
     SIZE: number,
     SIZE_BOARD: number,
     container: HTMLDivElement
   ) {
+    this.id = id;
+    this.board = board;
     this.x = x;
     this.y = y;
     this.SIZE = SIZE;
@@ -27,6 +35,7 @@ export class Square {
   }
 
   createSquare() {
+    this.element.id = this.id.toString();
     this.element.style.width = `${this.SIZE}px`;
     this.element.style.height = `${this.SIZE}px`;
     this.squareNumber.innerHTML = this.number.toString();
@@ -42,7 +51,7 @@ export class Square {
         `square-${this.number}`,
         "square-animated"
       );
-      this.squareNumber.offsetWidth;
+      void this.squareNumber.offsetWidth;
       this.squareNumber.classList.add(`square-${number}`, "square-animated");
       this.squareNumber.innerHTML = number.toString();
     }
@@ -57,6 +66,28 @@ export class Square {
     this.number = number;
     this.x = x;
     this.y = y;
+  }
+
+  moveSquareAnt(x: number, y: number, SIZE: number, squareAnt: Square | null) {
+    if (!squareAnt) return;
+    if (!this.squareExistInContainer(squareAnt.element.id)) return;
+    const { borderX, borderY } = this.getBorder(x, y);
+    squareAnt!.element.style.transform = `translate(${x * SIZE + borderX}px, ${
+      y * SIZE + borderY
+    }px)`;
+    squareAnt.element.id = "";
+    setTimeout(() => {
+      squareAnt.element.style.display = "none";
+      this.board.containerSquares.removeChild(squareAnt.element);
+    }, 150);
+  }
+
+  squareExistInContainer(id: string) {
+    if (id === "") return false;
+    const squares = document.querySelectorAll(".square");
+    const ids = [...squares].map((s) => s.id);
+    console.log({ ids, output: ids.includes(id), id });
+    return ids.includes(id);
   }
 
   getBorder(x: number, y: number) {
