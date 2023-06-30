@@ -183,9 +183,11 @@ export class Board {
       const cell = array[i];
       const cellAnt = array[i - 1];
       if (cell.num === cellAnt.num) {
-        squareAnt = cellAnt.square;
         this.sumSquares(cell, cellAnt);
+        squareAnt = cellAnt.square;
         summed = true;
+        cellAnt.num = 0;
+        cellAnt.square = null;
       }
     }
     return { summedRow: array, summed, squareAnt };
@@ -199,11 +201,14 @@ export class Board {
       const cell = array[i];
       const cellAnt = array[i + 1];
       if (cell.num === cellAnt.num) {
-        squareAnt = cellAnt.square;
         this.sumSquares(cell, cellAnt);
+        squareAnt = cellAnt.square;
         summed = true;
+        cellAnt.num = 0;
+        cellAnt.square = null;
       }
     }
+    console.log("")
     return { summedRow: array, summed, squareAnt };
   }
 
@@ -211,8 +216,6 @@ export class Board {
     cell.num += cellAnt.num;
     this.game.handleScore(cell.num);
     this.game.checkWin(cell.num);
-    cellAnt.num = 0;
-    cellAnt.square = null;
   }
 
   fillRow(row: rowBoard, direction: boolean) {
