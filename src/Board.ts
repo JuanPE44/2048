@@ -208,7 +208,6 @@ export class Board {
         cellAnt.square = null;
       }
     }
-    console.log("")
     return { summedRow: array, summed, squareAnt };
   }
 

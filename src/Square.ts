@@ -70,7 +70,6 @@ export class Square {
   }
 
   moveSquareAnt(x: number, y: number, SIZE: number, squareAnt: Square | null) {
-    console.log(squareAnt?.element.id);
     if (!squareAnt) return;
     if (!this.squareExistInContainer(squareAnt.element.id)) return;
     const { borderX, borderY } = this.getBorder(x, y);
@@ -81,14 +80,38 @@ export class Square {
     setTimeout(() => {
       squareAnt.element.style.display = "none";
       this.board.containerSquares.removeChild(squareAnt.element);
+      this.squaresExistInArray(squareAnt.element.id);
     }, 50);
+  }
+
+  squaresExistInArray(idAnt: string) {
+    const squares = document.querySelectorAll(".square");
+    const idsContainer = [...squares].map((s) => parseInt(s.id));
+    if (idsContainer.length <= 0) return;
+    idsContainer.pop();
+    const rows = this.board.array.map((row) => {
+      return row.map((s) => s.square && s.square.id);
+    });
+    const idsArray = Array(rows.length)
+      .concat(...rows)
+      .filter((id) => id !== null && id !== idAnt);
+    idsContainer.forEach((idContainer) => {
+      if (!idsArray.includes(idContainer))
+        this.deleteSquare(idContainer.toString());
+    });
+  }
+
+  deleteSquare(id: string) {
+    const square = document.getElementById(id);
+    if (square) {
+      this.board.containerSquares.removeChild(square!);
+    }
   }
 
   squareExistInContainer(id: string) {
     if (id === "") return false;
     const squares = document.querySelectorAll(".square");
     const ids = [...squares].map((s) => s.id);
-    console.log({ id, ids });
     return ids.includes(id);
   }
 
