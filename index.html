@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>2048</title>
   </head>
   <body>
     <div id="app">
@@ -23,7 +23,28 @@
           </div>
         </div>
         <div class="newgame">
+          <div class="container-buttons">
+            <div class="arrow left">
+              <img src="src/assets/tecla-flecha.png" alt="" />
+            </div>
+            <div class="arrow up">
+              <img src="src/assets/tecla-flecha.png" alt="" />
+            </div>
+            <div class="arrow bottom">
+              <img src="src/assets/tecla-flecha.png" alt="" />
+            </div>
+            <div class="arrow right">
+              <img src="src/assets/tecla-flecha.png" alt="" />
+            </div>
+          </div>
           <button>New Game</button>
+        </div>
+      </div>
+      <div class="board">
+        <div class="container-win">
+          <h1>YOU WON!</h1>
+          <div class="win-score">Score: <span>1000</span></div>
+          <button class="button-win">New Game</button>
         </div>
       </div>
     </div>

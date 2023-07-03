@@ -4,7 +4,7 @@ import { BoardArray, rowBoard, cellBoard } from "./types";
 
 export class Board {
   game;
-  element;
+  element: HTMLDivElement | null;
   SIZE;
   SIZE_SQUARE;
   containerSquares;
@@ -17,7 +17,7 @@ export class Board {
     this.SIZE_SQUARE = 90;
     this.squareAnt = null;
     this.idSquares = 0;
-    this.element = document.createElement("div");
+    this.element = document.querySelector(".board");
     this.array = this.createBoardArray(SIZE);
     this.containerSquares = this.createContainerSquares();
     this.init();
@@ -39,16 +39,15 @@ export class Board {
   }
 
   createBoard(squares: DocumentFragment, SIZE: number) {
-    this.element.appendChild(squares);
-    this.element.classList.add("board");
-    this.element.style.gridTemplateColumns = `repeat(${SIZE}, ${this.SIZE_SQUARE}px)`;
-    this.element.style.gridTemplateRows = `repeat(${SIZE}, ${this.SIZE_SQUARE}px)`;
+    this.element?.appendChild(squares);
+    this.element!.style.gridTemplateColumns = `repeat(${SIZE}, ${this.SIZE_SQUARE}px)`;
+    this.element!.style.gridTemplateRows = `repeat(${SIZE}, ${this.SIZE_SQUARE}px)`;
   }
 
   createContainerSquares() {
     const container = document.createElement("div");
     container.classList.add("container-squares");
-    this.element.appendChild(container);
+    this.element?.appendChild(container);
     return container;
   }
 
@@ -88,7 +87,19 @@ export class Board {
   }
 
   init() {
-    document.addEventListener("keydown", (e) => this.handleMove(e));
+    let flag = false;
+    document.addEventListener("keydown", (e) => {
+      if (!flag) {
+        flag = true;
+        this.handleMove(e);
+      }
+      this.game.addColorArrows(e);
+    });
+    document.addEventListener("keyup", (e) => {
+      flag = false;
+      this.game.removeColorArrows(e);
+    });
+
     this.addRandomSquare(this.SIZE);
     this.addRandomSquare(this.SIZE);
   }

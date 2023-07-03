@@ -1,4 +1,3 @@
-import "./style.css";
 import { Game } from "./Game";
 
 if (localStorage.getItem("bestScore") === null) {
@@ -10,4 +9,4 @@ const g = new Game();
 
 const containerGame = document.querySelector<HTMLDivElement>(".container-game");
 
-containerGame?.appendChild(g.board.element);
+containerGame?.appendChild(g.board.element!);
