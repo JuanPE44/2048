@@ -4,8 +4,7 @@ Este es un proyecto del juego 2048 utilizando HTML, CSS y Typescript. El juego t
 
 ## Demostración
 
-![2048](https://github.com/JuanPE44/2048/assets/89142353/536e35a8-71b7-4053-b41e-e811b641d12b)
-
+![2048-finish](https://github.com/JuanPE44/2048/assets/89142353/241cd0f9-eb71-451a-998f-0dbd98a24532)
 
 ## Uso
 
