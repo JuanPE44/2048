@@ -14,7 +14,7 @@ export class Board {
   constructor(game: Game, SIZE: number) {
     this.game = game;
     this.SIZE = SIZE;
-    this.SIZE_SQUARE = 90;
+    this.SIZE_SQUARE = 70;
     this.squareAnt = null;
     this.idSquares = 0;
     this.element = document.querySelector(".board");
@@ -98,6 +98,19 @@ export class Board {
     document.addEventListener("keyup", (e) => {
       flag = false;
       this.game.removeColorArrows(e);
+    });
+
+    this.game.arrowBottom?.addEventListener("click", () => {
+      this.handleMoveY(true);
+    });
+    this.game.arrowLeft?.addEventListener("click", () => {
+      this.handleMoveX(false);
+    });
+    this.game.arrowRight?.addEventListener("click", () => {
+      this.handleMoveX(true);
+    });
+    this.game.arrowUp?.addEventListener("click", () => {
+      this.handleMoveY(false);
     });
 
     this.addRandomSquare(this.SIZE);
