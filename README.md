@@ -1,19 +1,65 @@
-# Juego 2048
+# 2048
 
-Pagina web del juego 2048 utilizando HTML, CSS y Typescript. El juego tiene como objetivo combinar fichas numéricas para llegar al numero 2048.
+Este es un proyecto de un clon del clásico juego 2048, donde los jugadores deben combinar números en un tablero para llegar al número 2048. Está desarrollado con TypeScript, usando Vite para la configuración de la aplicación.
+
+## Tecnologías utilizadas
+
+- **TypeScript**: Lenguaje de programación principal.
+- **Vite**: Herramienta de construcción y desarrollo rápido.
+- **CSS**: Para el estilo del juego.
+- **HTML**: Para la estructura básica de la página.
+
+## Instalación
+
+1. Clona este repositorio:
+
+    ```bash
+    git clone https://github.com/JuanPE44/2048.git
+    ```
+
+2. Navega al directorio del proyecto:
+
+    ```bash
+    cd 2048
+    ```
+
+3. Instala las dependencias del proyecto:
+
+    ```bash
+    npm install
+    ```
+
+4. Inicia el servidor de desarrollo:
+
+    ```bash
+    npm run dev
+    ```
+
+5. Abre tu navegador y visita `http://localhost:3000` para jugar.
+
 
 ## Demostración
 
 ![2048-finish](https://github.com/JuanPE44/2048/assets/89142353/241cd0f9-eb71-451a-998f-0dbd98a24532)
 
+
 ## Uso
 
-- Utiliza las teclas de flecha (arriba, abajo, izquierda, derecha) para deslizar las fichas en el tablero.
-- El objetivo del juego es combinar fichas numéricas iguales para obtener la ficha 2048.
-- El juego termina cuando no hay movimientos posibles o se alcanza la ficha 2048.
+Al iniciar el juego, verás un tablero de 4x4 con fichas que contienen potencias de 2. El objetivo es deslizar las fichas y combinarlas para alcanzar el número 2048. Puedes usar las flechas del teclado para mover las fichas en las 4 direcciones (arriba, abajo, izquierda, derecha).
 
-## Instalación
+## Contribución
 
-1. Clona este repositorio en tu máquina local
-2. Ejecuta el comando `npm install`
-3. Abri el servidor local con `npm run dev`
+Si deseas contribuir al proyecto, por favor sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una rama nueva (`git checkout -b feature-nueva`).
+3. Realiza tus cambios.
+4. Haz commit de tus cambios (`git commit -am 'Agregada nueva funcionalidad'`).
+5. Push a tu rama (`git push origin feature-nueva`).
+6. Abre un Pull Request.
+
+## Autor
+
+Juan Peñalba
+
+
