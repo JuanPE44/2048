@@ -47,17 +47,6 @@ Este es un proyecto de un clon del clásico juego 2048, donde los jugadores debe
 
 Al iniciar el juego, verás un tablero de 4x4 con fichas que contienen potencias de 2. El objetivo es deslizar las fichas y combinarlas para alcanzar el número 2048. Puedes usar las flechas del teclado para mover las fichas en las 4 direcciones (arriba, abajo, izquierda, derecha).
 
-## Contribución
-
-Si deseas contribuir al proyecto, por favor sigue estos pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una rama nueva (`git checkout -b feature-nueva`).
-3. Realiza tus cambios.
-4. Haz commit de tus cambios (`git commit -am 'Agregada nueva funcionalidad'`).
-5. Push a tu rama (`git push origin feature-nueva`).
-6. Abre un Pull Request.
-
 ## Autor
 
 Juan Peñalba
